@@ -7,4 +7,4 @@ for i in "${@}"; do
 done
 
 cd /node
-eval "java -jar $BASE_DIR/build/libs/FullNode.jar -c config.conf $args"
+eval "java -jar $BASE_DIR/FullNode.jar -c config.conf $args"

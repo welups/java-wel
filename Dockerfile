@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu as build
 
 ENV BASE_DIR="/java-tron"
 ENV JAVA_TAR="jdk1.8.0_275-linux-x64"
@@ -22,6 +22,9 @@ RUN cd $BASE_DIR \
     && cd $BASE_DIR \
     && ./gradlew build -x test
 
+FROM openjdk:8
+ENV BASE_DIR="/java-tron"
+COPY --from=build $BASE_DIR/build/libs/FullNode.jar $BASE_DIR
 COPY docker-entrypoint.sh /usr/bin
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 WORKDIR $BASE_DIR
