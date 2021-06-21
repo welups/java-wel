@@ -24,7 +24,7 @@ RUN cd $BASE_DIR \
 
 FROM openjdk:8
 ENV BASE_DIR="/java-tron"
-COPY --from=build $BASE_DIR/build/libs/FullNode.jar $BASE_DIR
+COPY --from=build $BASE_DIR/build/libs/FullNode.jar $BASE_DIR/
 COPY docker-entrypoint.sh /usr/bin
 RUN chmod +x /usr/bin/docker-entrypoint.sh
 WORKDIR $BASE_DIR
